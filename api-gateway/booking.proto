@@ -1,0 +1,36 @@
+syntax = "proto3";
+package booking;
+
+message Booking {
+  string id = 1;
+  string restaurant_id = 2;
+  string user_id = 3;
+  int32 guests = 5;
+}
+
+message GetBookingRequest {
+   string id = 1; 
+  }
+message GetBookingResponse {
+   Booking booking = 1; 
+  }
+
+message SearchBookingsRequest {
+   string query = 1;
+   }
+message SearchBookingsResponse {
+   repeated Booking bookings = 1; 
+  }
+
+message CreateBookingRequest {
+Booking booking=1;
+}
+message CreateBookingResponse {
+   Booking booking = 1; 
+  }
+
+service BookingService {
+  rpc GetBooking(GetBookingRequest) returns (GetBookingResponse);
+  rpc SearchBookings(SearchBookingsRequest) returns (SearchBookingsResponse);
+  rpc CreateBooking(CreateBookingRequest) returns (CreateBookingResponse);
+}

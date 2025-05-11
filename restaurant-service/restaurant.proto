@@ -1,0 +1,35 @@
+syntax = "proto3";
+package restaurant;
+
+message Restaurant {
+  string id = 1;
+  string name = 2;
+  string cuisine = 3;
+}
+
+message GetRestaurantRequest {
+   string id = 1; 
+  }
+message GetRestaurantResponse {
+   Restaurant restaurant = 1; 
+  }
+
+message SearchRestaurantsRequest {
+   string query = 1; 
+  }
+message SearchRestaurantsResponse {
+   repeated Restaurant restaurants = 1; 
+  }
+
+message CreateRestaurantRequest {
+  Restaurant restaurant = 1; 
+}
+message CreateRestaurantResponse {
+   Restaurant restaurant = 1; 
+  }
+
+service RestaurantService {
+  rpc GetRestaurant(GetRestaurantRequest) returns (GetRestaurantResponse);
+  rpc SearchRestaurants(SearchRestaurantsRequest) returns (SearchRestaurantsResponse);
+  rpc CreateRestaurant(CreateRestaurantRequest) returns (CreateRestaurantResponse);
+}
